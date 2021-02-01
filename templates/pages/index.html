@@ -1,0 +1,15 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}Accueil{% endblock %}
+
+{% block navbar %}
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link href="{{ url_for('static',filename='style/index.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+  <h3>{{ titre }}</h3>
+{% endblock %}
+
