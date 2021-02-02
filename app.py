@@ -2,10 +2,12 @@ from flask import Flask, render_template
 from flask_bootstrap import Bootstrap
 from flask_pymongo import pymongo
 import requests, db
+from animation import animation
 
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
 
+app.register_blueprint(animation, url_prefix="")
 
 # exemple d'insertion
 @app.route("/test")
