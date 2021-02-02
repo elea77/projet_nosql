@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, json
 from flask_bootstrap import Bootstrap
 from flask_pymongo import pymongo
 import requests, db
@@ -13,11 +13,15 @@ app.register_blueprint(animation, url_prefix="")
 app.register_blueprint(concert, url_prefix="")
 app.register_blueprint(exposition, url_prefix="")
 
-# exemple d'insertion
-@app.route("/test")
-def test():
-    db.db.test.insert_one({"name": "test"})
-    return "Connected to the database!"
+
+# Importer les données de l'api dans la base de données
+with open('data-api.json') as file: 
+    file_data = json.load(file) 
+      
+@app.route("/api")
+def api():
+    db.db.api.insert_many(file_data)
+    return "Eléments ajoutés en bdd !"
 
 
 @app.route('/')
