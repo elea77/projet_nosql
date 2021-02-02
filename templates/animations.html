@@ -1,0 +1,27 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}Animations{% endblock %}
+
+{% block navbar %}
+{% endblock %}
+
+{% block styles %}
+    {{super()}}
+    <link href="{{ url_for('static',filename='style/index.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        {% for animation in animations %}
+        <div class="animation row">
+            <h3>{{ animation.fields.title }}</h3>
+            <h6>{{ animation.fields.category }}</h6>
+            <p>{{ animation.fields.date_end }}</p>
+            <img src="{{animation.fields.cover_url}}" alt="" class="img-thumbnail">
+        </div>
+        <br>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+
+

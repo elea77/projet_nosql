@@ -22,7 +22,7 @@ with open('data-api.json') as file:
 def api():
     db.db.api.insert_many(file_data)
     return "Eléments ajoutés en bdd !"
-
+ 
 
 @app.route('/')
 def index():
