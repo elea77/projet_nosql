@@ -1,9 +1,17 @@
 from flask import Flask, render_template
 from flask_bootstrap import Bootstrap
-import requests
+from flask_pymongo import pymongo
+import requests, db
 
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
+
+
+# exemple d'insertion
+@app.route("/test")
+def test():
+    db.db.test.insert_one({"name": "test"})
+    return "Connected to the database!"
 
 
 @app.route('/')
