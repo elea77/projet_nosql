@@ -9,7 +9,7 @@ bootstrap = Bootstrap(app)
 @app.route('/')
 def index():
     titre = "Page d'accueil"
-    return render_template('pages/index.html', titre=titre)
+    return render_template('index.html', titre=titre)
     
     
 # L’application démarre à partir de cette ligne.
