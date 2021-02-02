@@ -4,12 +4,14 @@ from flask_pymongo import pymongo
 import requests, db
 from animation import animation
 from concert import concert
+from exposition import exposition
 
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
 
 app.register_blueprint(animation, url_prefix="")
 app.register_blueprint(concert, url_prefix="")
+app.register_blueprint(exposition, url_prefix="")
 
 # exemple d'insertion
 @app.route("/test")
