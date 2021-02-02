@@ -1,0 +1,13 @@
+{% extends "bootstrap/base.html" %} {% block title %}Concert{% endblock %} {% block navbar %} {% endblock %} {% block styles %} {{super()}}
+<link href="{{ url_for('static',filename='style/index.css') }}" rel="stylesheet"> {% endblock %} {% block content %}
+<div class="container">
+    {% for concert in concerts %}
+    <div class="concert row">
+        <h3>{{ concert.fields.title }}</h3>
+        <h6>{{ concert.fields.category }}</h6>
+        <p>{{ concert.fields.date_end }}</p>
+        <img src="{{concert.fields.cover_url}}" alt="" class="img-thumbnail">
+    </div>
+    <br> {% endfor %}
+</div>
+{% endblock %}
