@@ -18,9 +18,20 @@ app.register_blueprint(exposition, url_prefix="")
 with open('data-api.json') as file: 
     file_data = json.load(file) 
       
+@app.route("/api-doc")
+def api_doc():
+    db.client.drop_database("nosql_db")
+    db.db.api.insert_many(file_data)
+    return "Eléments ajoutés en bdd !"
+ 
 @app.route("/api")
 def api():
-    db.db.api.insert_many(file_data)
+    db.client.drop_database("nosql_db")
+    api = requests.get("https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&q=&rows=1230")
+    json_obj = api.json()
+    data_api = list(json_obj["records"])
+
+    db.db.api.insert_many(data_api)
     return "Eléments ajoutés en bdd !"
  
 
