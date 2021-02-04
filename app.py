@@ -27,7 +27,7 @@ def api_doc():
 @app.route("/api")
 def api():
     db.client.drop_database("nosql_db")
-    api = requests.get("https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&q=&rows=1230")
+    api = requests.get("https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&q=&rows=2000")
     json_obj = api.json()
     data_api = list(json_obj["records"])
 
