@@ -3,13 +3,12 @@
 
 {% block navbar %}
 
-
-
 {% endblock %}
 
 {% block styles %}
     {{super()}}
     <link href="{{ url_for('static',filename='style/categories.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='style/navbar.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Taviraj:wght@500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -18,8 +17,8 @@
 {% block content %}
 
     <div class="banner">
-        <img src="{{ url_for('static',filename='images/animation.png') }}" alt="">
-        <h1>Animations</h1>
+        <img src="{{ url_for('static',filename='images/concert.png') }}" alt="">
+        <h1>Concerts</h1>
     </div>
     
     <div class="category">
@@ -67,16 +66,14 @@
             <h1 class="text-center">À la une</h1>
     
             <div class="row category-items">
-                {% for animation in animations %}
+                {% for concert in concerts %}
                     <div class="col-3 item">   
-                        <a href="#">
-                            <div class="item-img">
-                                <img src="{{animation.fields.cover_url}}" alt="">
-                            </div>
-                            <div class="item-title">
-                                <h3 class="text-center">{{ animation.fields.title }}</h3>
-                            </div> 
-                        </a>
+                        <div class="item-img">
+                            <img src="{{concert.fields.cover_url}}" alt="">
+                        </div>
+                        <div class="item-title">
+                            <h3 class="text-center">{{ concert.fields.title }}</h3>
+                        </div> 
                     </div>
                 {% endfor %}
             </div>

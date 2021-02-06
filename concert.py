@@ -6,7 +6,7 @@ concert = Blueprint("concert", __name__, static_folder="static", template_folder
 @concert.route("/concerts")
 def concerts():
     
-    concert = db.db.api.find({"fields.category": { "$regex": '^Concerts' }}, {"fields.title":1, "fields.category": 1, "fields.date_end": 1, "fields.cover_url":1}).limit(10)
-    print(concerts)
-    return render_template('concert.html', concerts=concert)
+    concerts = db.db.api.find({"fields.category": { "$regex": '^Concerts' }}, {"fields.title":1, "fields.category": 1, "fields.date_end": 1, "fields.cover_url":1}).sort([("fields.date_end", -1)]).limit(8)
+    
+    return render_template('concerts.html', concerts=concerts)
 
