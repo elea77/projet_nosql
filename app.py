@@ -16,6 +16,7 @@ app.register_blueprint(exposition, url_prefix="")
 app.register_blueprint(spectacle, url_prefix="")
 
 
+
 # Importer les données de l'api dans la base de données
 with open('data-api.json') as file: 
     file_data = json.load(file) 
@@ -41,6 +42,10 @@ def api():
 def index():
     titre = "Page d'accueil"
     return render_template('index.html', titre=titre)
+
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('404.html')
 
 
 # @animation.route("/animation/<id>")
