@@ -1,0 +1,60 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}Animations{% endblock %}
+
+{% block navbar %}
+
+    <header class="header__main">
+    <div class="header__logo">
+        <!-- <img src="{{url_for('static', filename='images/logo.png')}}" alt="logo"> -->
+        <h1>Paris</h1>
+    </div>
+
+    <div class="nav-list-container">
+        <nav class="header__nav">
+            <ul class="nav__list">
+                <li class="nav__item"><a href="/">Accueil</a></li>
+                <li class="nav__item"><a href="/animations">Animations</a></li>
+                <li class="nav__item"><a href="/expositions">Expositions</a></li>
+                <li class="nav__item"><a href="/concerts">Concerts</a></li>
+                <li class="nav__item"><a href="/spectacles">Spectacles</a></li>
+            </ul>
+        </nav>
+    </div>
+  </header>
+
+{% endblock %}
+
+{% block styles %}
+    {{super()}}
+    <link href="{{ url_for('static',filename='style/categories.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='style/navbar.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Taviraj:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+{% endblock %}
+
+{% block content %}
+
+
+    <div class="a-la-une">
+        <div class="container">
+    
+            <div class="row category-items">
+                {% for event in data %}
+                <div class="col-3 item">   
+                    <a href="/event/{{event.recordid}}">
+                        <div class="item-img">
+                            <img src="{{event.fields.cover_url}}" alt="">
+                        </div>
+                        <div class="item-title">
+                            <h3 class="text-center">{{ event.fields.title }}</h3>
+                        </div> 
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+            
+        </div>
+    </div>
+    
+{% endblock %}

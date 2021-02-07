@@ -1,0 +1,70 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}Évènement{% endblock %}
+
+{% block navbar %}
+
+    <header class="header__main">
+    <div class="header__logo">
+        <!-- <img src="{{url_for('static', filename='images/logo.png')}}" alt="logo"> -->
+        <h1>Paris</h1>
+    </div>
+
+    <div class="nav-list-container">
+        <nav class="header__nav">
+            <ul class="nav__list">
+                <li class="nav__item"><a href="/">Accueil</a></li>
+                <li class="nav__item"><a href="/events">events</a></li>
+                <li class="nav__item"><a href="/expositions">Expositions</a></li>
+                <li class="nav__item"><a href="/concerts">Concerts</a></li>
+                <li class="nav__item"><a href="/spectacles">Spectacles</a></li>
+            </ul>
+        </nav>
+    </div>
+  </header>
+
+{% endblock %}
+
+{% block styles %}
+    {{super()}}
+    <link href="{{ url_for('static',filename='style/event.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='style/navbar.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Taviraj:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <h1 class="text-center">{{event.fields.title}}</h1>
+    
+        <img src="{{event.fields.cover_url}}" alt="" width="50%">
+
+        <div class="row">
+            <div class="col-9 part_left">
+                <p>{{event.fields.description}}</p>
+                
+            </div>
+            <div class="col-3 part_right">
+                <h1 class="text-center">Informations pratiques</h1>
+                <div class="bloc">
+                    <h4>Dates</h4>
+                    <p>{{event.fields.date_start}}</p>
+                    <p>{{event.fields.date_end}}</p>
+                </div>
+
+                <div class="bloc">
+                    <h4>Prix</h4>
+                    <p>{{event.fields.price_detail}}</p>
+                </div>
+                
+            </div>
+        </div>
+        
+
+    </div>
+    
+    
+
+    
+{% endblock %}

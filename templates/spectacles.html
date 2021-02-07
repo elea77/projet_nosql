@@ -3,13 +3,31 @@
 
 {% block navbar %}
 
+    <header class="header__main">
+    <div class="header__logo">
+        <!-- <img src="{{url_for('static', filename='images/logo.png')}}" alt="logo"> -->
+        <h1>Paris</h1>
+    </div>
 
+    <div class="nav-list-container">
+        <nav class="header__nav">
+            <ul class="nav__list">
+                <li class="nav__item"><a href="/">Accueil</a></li>
+                <li class="nav__item"><a href="/animations">Animations</a></li>
+                <li class="nav__item"><a href="/expositions">Expositions</a></li>
+                <li class="nav__item"><a href="/concerts">Concerts</a></li>
+                <li class="nav__item"><a href="/spectacles">Spectacles</a></li>
+            </ul>
+        </nav>
+    </div>
+  </header>
 
 {% endblock %}
 
 {% block styles %}
     {{super()}}
     <link href="{{ url_for('static',filename='style/categories.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static',filename='style/navbar.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Taviraj:wght@500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -28,34 +46,34 @@
         <div class="subcategories row">
 
             <div class="item col">
-                <a href="#">
-                    <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80">
+                <a href="/subcategory/theatre">
+                    <img src="https://cdn.pixabay.com/photo/2019/11/07/20/48/cinema-4609877_1280.jpg">
                     <div class="card-img-overlay">  
-                        <h3>Conférence / Débat</h3>
+                        <h3>Théâtre</h3>
                     </div>
                 </a>
              </div>
             <div class="item col">
-                <a href="#">
-                    <img src="https://images.unsplash.com/photo-1602697624695-0b30b11bc0b9?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2087&q=80">
+                <a href="/subcategory/jeune">
+                    <img src="https://cdn.pixabay.com/photo/2014/10/08/09/54/children-479692_1280.jpg">
                     <div class="card-img-overlay">  
-                        <h3>Atelier / Cours</h3>
+                        <h3>Jeune public</h3>
                     </div>
                 </a>
              </div>
             <div class="item col">
-                <a href="#">
-                    <img src="https://cdn.pixabay.com/photo/2020/04/20/20/57/people-discussion-5069845_960_720.jpg">
+                <a href="/subcategory/cirque">
+                    <img src="https://cdn.pixabay.com/photo/2013/12/21/02/49/circus-231549_1280.jpg">
                     <div class="card-img-overlay">
-                        <h3>Stage</h3>
+                        <h3>Cirque / Art de la Rue</h3>
                     </div>
                 </a>
              </div>
             <div class="item col">
-                <a href="#">
-                    <img src="https://images.unsplash.com/photo-1514905552197-0610a4d8fd73?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80">
+                <a href="/subcategory/danse">
+                    <img src="https://cdn.pixabay.com/photo/2016/12/30/10/03/dance-1940245_1280.jpg">
                     <div class="card-img-overlay">
-                        <h3>Visite guidée</h3>
+                        <h3>Danse</h3>
                     </div>
                 </a>
              </div>
@@ -69,7 +87,7 @@
             <div class="row category-items">
                 {% for spectacle in spectacles %}
                     <div class="col-3 item">   
-                        <a href="/spectacle/{{spectacle.recordid}}">
+                        <a href="/event/{{spectacle.recordid}}">
                             <div class="item-img">
                                 <img src="{{spectacle.fields.cover_url}}" alt="">
                             </div>
