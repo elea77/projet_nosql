@@ -6,7 +6,7 @@ from animation import animation
 from concert import concert
 from exposition import exposition
 from spectacle import spectacle
-
+import re
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
 
@@ -48,12 +48,20 @@ def page_not_found(error):
     return render_template('404.html')
 
 
-# @animation.route("/animation/<id>")
-# def animation(id):
+@app.route("/event/<id>")
+def event(id):
 
-#     animation = db.db.api.find_one({"recordid": id}, {"fields.title":1, "fields.category": 1, "fields.date_end": 1, "fields.cover_url":1, "recordid":1, "fields.description":1, "fields.date_start":1, "fields.date_end":1, "fields.price_detail":1})
+    event = db.db.api.find_one({"recordid": id}, {"fields.title":1, "fields.category": 1, "fields.date_end": 1, "fields.cover_url":1, "recordid":1, "fields.description":1, "fields.date_start":1, "fields.date_end":1, "fields.price_detail":1})
+
+    return render_template('event.html', event=event)
+
+
+@app.route("/subcategory/<subcategory>")
+def subcategory(subcategory):
+
+    data = db.db.api.find({"fields.category": { "$regex": re.compile(subcategory, re.IGNORECASE)} }, {"fields.title":1, "fields.category": 1, "fields.cover_url":1, "recordid":1 })
     
-#     return render_template('animation.html', animation=animation)
+    return render_template('subcategory.html', data=data)
 
 
     
