@@ -125,5 +125,6 @@
 .category-items .item-title {
     background-color: white;
     color: black;
+    border-radius: 0 0 5px 5px;
 }
 
