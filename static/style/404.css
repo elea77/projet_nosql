@@ -1,0 +1,25 @@
+body{
+   
+   background-image: url("/static/images/002454.png");
+}
+
+img{
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+}
+.nf{
+    text-align: center;
+    margin-top: 200px;
+    color: #fff;
+    font-size: 3rem;
+    font-family: 'Anton', sans-serif;
+}
+
+.indisp{
+
+    text-align: center;
+    margin-top: 80px;
+    color: #fff;
+    font-family: 'Anton', sans-serif;
+}
