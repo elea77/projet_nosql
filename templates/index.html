@@ -4,33 +4,36 @@
 {% block styles %}
   {{super()}}
   <link href="{{ url_for('static',filename='style/index.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static',filename='style/navbar.css') }}" rel="stylesheet">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  
+{% endblock %}
+
+{% block navbar %}
+
+  <header class="header__main">
+    <div class="header__logo">
+        <!-- <img src="{{url_for('static', filename='images/logo.png')}}" alt="logo"> -->
+        <h1>Paris</h1>
+    </div>
+
+    <div class="nav-list-container">
+        <nav class="header__nav">
+            <ul class="nav__list">
+                <li class="nav__item"><a href="/">Accueil</a></li>
+                <li class="nav__item"><a href="/maListe">Animations</a></li>
+                <li class="nav__item"><a href="/profile">Expositions</a></li>
+                <li class="nav__item"><a href="/logout">Concerts</a></li>
+                <li class="nav__item"><a href="/logout">Spectacles</a></li>
+            </ul>
+        </nav>
+    </div>
+  </header>
+
 {% endblock %}
 
 {% block content %}
 
-<nav class="navbar navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Paris`Easy</a>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Accueil </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Animations</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Concerts</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Expositions</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Spectacles</a>
-      </li>
-    </ul>
-  </div>
-</nav>
 
 <div class="jumbotron">
     <h1 class="display-4">
