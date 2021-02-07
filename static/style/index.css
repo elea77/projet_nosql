@@ -1,41 +1,11 @@
-* {
-    margin: 0;
-    padding: 0;
-}
-/* navbar*/
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-}
-  
-li {
-    float: left;
-}
-  
-li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-  
-li a:hover {
-    color: #ffffff;
-    border-bottom: 4px solid #fff;
-    transition: all 0.2s ease-out;
-}
-
 /* Hero-section*/
 .jumbotron {
     height: 500px;
-    background-image: url("/images/bg.jpg");
-        background-size: cover;
+    background-image: url("../images/bg.jpg");
+    background-size: cover;
     border-radius: 0px;
     padding-bottom: 80px;
-  }
+}
   
 .display-4{
   
