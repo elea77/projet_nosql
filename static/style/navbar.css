@@ -24,6 +24,10 @@
 	width: 200px;
 }
 
+.header__logo h1 {
+    color: white;
+}
+
 .header__nav .nav__item {
 
     color: white;
@@ -38,6 +42,7 @@
     justify-content: center;
     align-items: center;
 	text-decoration: none;
+    font-size: 1.5em;
 }
 
 .header__nav .nav__item:hover{
