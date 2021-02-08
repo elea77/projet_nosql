@@ -59,9 +59,19 @@ def event(id):
 @app.route("/subcategory/<subcategory>")
 def subcategory(subcategory):
 
-    data = db.db.api.find({"fields.category": { "$regex": re.compile(subcategory, re.IGNORECASE)} }, {"fields.title":1, "fields.category": 1, "fields.cover_url":1, "recordid":1 })
+    data_category = db.db.api.find_one({"fields.category": { "$regex": re.compile(subcategory, re.IGNORECASE)} }, {"fields.category": 1 })
+
+    field_category = data_category['fields']['category']
+
+    split_category = field_category.split(" -> ")
+
+    category = split_category[0]
+    subcategory = split_category[1]
     
-    return render_template('subcategory.html', data=data)
+
+    data = db.db.api.find({"fields.category": { "$regex": re.compile(subcategory, re.IGNORECASE)}}, {"fields.title":1, "fields.category": 1, "fields.cover_url":1, "recordid":1 })
+    
+    return render_template('subcategory.html', data=data, category=category, subcategory=subcategory)
 
 
     

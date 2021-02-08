@@ -35,8 +35,22 @@
 
 {% block content %}
 
+    <div class="banner">
+        {% if category == 'Animations' %}
+            <img src="{{ url_for('static',filename='images/animation.png') }}" alt="">
+        {% elif category == 'Concerts' %}
+            <img src="{{ url_for('static',filename='images/concert.png') }}" alt="">
+        {% elif category == 'Expostions' %}
+            <img src="{{ url_for('static',filename='images/exposition.png') }}" alt="">
+        {% elif category == 'Spectacles' %}
+            <img src="{{ url_for('static',filename='images/spectacle.png') }}" alt="">
+        {% endif %}
+        <h1>{{category}}</h1>
+    </div>
 
     <div class="a-la-une">
+    <h1 class="text-center">{{subcategory}}</h1>
+
         <div class="container">
     
             <div class="row category-items">
