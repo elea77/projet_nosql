@@ -7,7 +7,15 @@
     padding-bottom: 80px;
     margin-bottom: 0!important;
 }
-  
+
+.jumbotron h1 {
+    font-family: 'Taviraj', serif;
+}
+
+.jumbotron .lead {
+    margin-top: 5%;
+}
+
 .display-4{
   
     text-align: center;
