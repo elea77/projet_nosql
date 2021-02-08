@@ -96,24 +96,25 @@ def subcategory(subcategory):
 @app.route("/event/<id>")
 def event(id):
 
-    event = db.db.api.find_one({"recordid": id}, {"fields.title":1, "fields.category": 1, "fields.date_end": 1, "fields.cover_url":1, "recordid":1, "fields.description":1, "fields.date_start":1, "fields.date_end":1, "fields.price_detail":1})
+    event = db.db.api.find_one({"recordid": id}, {"fields.title":1, "fields.category": 1, "fields.date_description": 1, "fields.cover_url":1, "recordid":1, "fields.description":1, "fields.price_detail":1,"fields.lead_text":1})
     
     field_description = event['fields']['description']
+    field_date_description = event['fields']['date_description']
+
+    
     
     # Delete HTML code in data method 1
     # replace html code
-    # sub_description = re.sub('<p>', '', field_description)
-    # sub_description = re.sub('&amp; écriture', '', sub_description)
+    #sub_description = re.sub('<br />', '', field_description)
     # split description
-    # description = sub_description.split('</p>')
-
+    date_description = field_date_description.split('<br />')
+    # print(date_description)
     # Delete HTML code in data method 2
     clean = re.compile('<.*?>')
     description = re.sub(clean, ' ', field_description)
     description = re.sub('&amp;', '', description)
 
-
-    return render_template('event.html', event=event, description=description)
+    return render_template('event.html', event=event, description=description, date_description=date_description)
 
     
 # L’application démarre à partir de cette ligne.
