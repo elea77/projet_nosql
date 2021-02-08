@@ -45,8 +45,8 @@
 }
 
 .bg-full .category-items .item-title {
-    background-color: #242424;
-    color: white;
+    background-color: white;
+    color: black;
     border-radius: 0 0 5px 5px;
 }
 
