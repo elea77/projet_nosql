@@ -39,21 +39,32 @@
         <h1 class="text-center mb-5 mt-5">{{event.fields.title}}</h1>
     
        
+        <div class="row mt-5">
+
+
+            <div class="col-7 part_left">
+                <img class="mb-5" src="{{event.fields.cover_url}}" alt="" width="60%">
+
+              
+            </div>
+            <div class="col-5 part_right">
+
+                <p class="text-accroche mb-5">{{event.fields.lead_text}}</p>
+
+
+            </div>
+        </div>
+        
 
         <div class="row mt-5">
 
 
             <div class="col-9 part_left">
-                <img class="mb-5" src="{{event.fields.cover_url}}" alt="" width="50%">
 
                 <p>{{description}}</p>
                 
-                
-                
             </div>
             <div class="col-3 part_right">
-
-                <p class="text-accroche mb-5">{{event.fields.lead_text}}</p>
 
                 <h1 class="text-center">Informations pratiques</h1>
                 <div class="bloc">
