@@ -45,77 +45,57 @@
 
   <div class="container mt-5">
 
-    <h1> Meilleur activité </h1>
+    <h1> Évènements gratuit </h1>
     <div class="row">
-
-        <div class="col mb-5">
-            <div class="card" style="width: 18rem;">
-                <img src="../static/images/paris.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5> Nom </h5>							
-                  <p class="card-text"> adresse </p>
-                  <br>
-                </div>
+        {% for event in free_event %}
+          <div class="col-3">
+            <a href="/event/{{event.recordid}}">
+              <div class="card" style="width: 18rem;">
+                  <img src="{{event.fields.cover_url}}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5> {{ event.fields.title }} </h5>	
+                    <p class="card-text"> {{event.fields.address_street}} </p>
+                  </div>
               </div>
-        </div>
-
-        <div class="col mb-5">
-            <div class="card" style="width: 18rem;">
-                <img src="../static/images/paris.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5> Nom </h5>							
-                  <p class="card-text"> adresse </p>
-                  <br>
-                </div>
-              </div>
-        </div>
-
-        <div class="col mb-5">
-            <div class="card" style="width: 18rem;">
-                <img src="../static/images/paris.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5> Nom </h5>							
-                  <p class="card-text"> adresse </p>
-                  <br>
-                </div>
-              </div>
-        </div>
-
-        <div class="col mb-5">
-            <div class="card" style="width: 18rem;">
-                <img src="../static/images/paris.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5> Nom </h5>							
-                  <p class="card-text"> adresse </p>
-                  <br>
-                </div>
-              </div>
-        </div>
-
-        <div class="col mb-5">
-            <div class="card" style="width: 18rem;">
-                <img src="../static/images/paris.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5> Nom </h5>							
-                  <p class="card-text"> adresse </p>
-                  <br>
-                </div>
-              </div>
-        </div>
-
-        <div class="col mb-5">
-            <div class="card" style="width: 18rem;">
-                <img src="../static/images/paris.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5> Nom </h5>							
-                  <p class="card-text"> adresse </p>
-                  <br>
-                </div>
-              </div>
-        </div>
-
-
+            </a>
+          </div>
+        {% endfor %}
     </div>
+    
+    <h1> Évènements accessibles aux personnes handicapées </h1>
+    <div class="row">
+        {% for event in pmr_event %}
+          <div class="col-3">
+            <a href="/event/{{event.recordid}}">
+              <div class="card" style="width: 18rem;">
+                <img src="{{event.fields.cover_url}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5> {{ event.fields.title }} </h5>	
+                  <p class="card-text"> {{event.fields.address_street}} </p>
+                </div>
+              </div>
+            </a>
+          </div>
+        {% endfor %}
+    </div>
+
+    <h1> Évènements sur réservation </h1>
+    <div class="row">
+        {% for event in reservation_event %}
+          <div class="col-3">
+            <a href="/event/{{event.recordid}}">
+              <div class="card" style="width: 18rem;">
+                <img src="{{event.fields.cover_url}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5> {{ event.fields.title }} </h5>	
+                  <p class="card-text"> {{event.fields.address_street}} </p>
+                </div>
+              </div>
+            </a>
+          </div>
+        {% endfor %}
+    </div>
+    
   </div>
 
 
@@ -123,7 +103,7 @@
     <div class="container-fluid text-center text-md-left">
       <div class="row">
       <div class="col-md-6 mt-md-0 mt-3">
-    <div class="footer-copyright text-center py-3">© © 2021, <a href="">Paris`Easy.</a> Tous droits reservés. 
+    <div class="footer-copyright text-center py-3">© 2021, <a href="">Paris`Easy.</a> Tous droits reservés. 
       <a href="https://mdbootstrap.com/education/bootstrap/"> </a>
       </div>
     </div>

@@ -37,8 +37,14 @@ def api():
 
 @app.route('/')
 def index():
-    titre = "Page d'accueil"
-    return render_template('index.html', titre=titre)
+    
+    free_event = db.db.api.find({'fields.price_type': "gratuit"}, {"fields.title":1, "fields.address_street": 1, "fields.cover_url":1, "recordid":1 }).limit(8)
+
+    pmr_event = db.db.api.find({'fields.pmr': 1}, {"fields.title":1, "fields.address_street": 1, "fields.cover_url":1, "recordid":1 }).limit(8)
+    
+    reservation_event = db.db.api.find({'fields.access_type': "reservation"}, {"fields.title":1, "fields.address_street": 1, "fields.cover_url":1, "recordid":1 }).limit(8)
+
+    return render_template('index.html', free_event=free_event, pmr_event=pmr_event, reservation_event=reservation_event)
 
 
 @app.errorhandler(404)
@@ -59,7 +65,7 @@ def category(category):
 
     category = split_category[0]
 
-    # Get data for category
+    # Get data for category "A la une"
     data = db.db.api.find({"fields.category": { "$regex": re.compile(category, re.IGNORECASE)}}, {"fields.title":1, "fields.category": 1, "fields.date_end": 1, "fields.cover_url":1, "recordid":1 }).sort([("fields.date_end", -1)]).limit(8)
     
     return render_template('category.html', data=data, category=category)
@@ -92,13 +98,19 @@ def event(id):
 
     event = db.db.api.find_one({"recordid": id}, {"fields.title":1, "fields.category": 1, "fields.date_end": 1, "fields.cover_url":1, "recordid":1, "fields.description":1, "fields.date_start":1, "fields.date_end":1, "fields.price_detail":1})
     
-    # Delete HTML code in data
     field_description = event['fields']['description']
+    
+    # Delete HTML code in data method 1
     # replace html code
-    sub_description = re.sub('<p>', '', field_description)
-    sub_description = re.sub('&amp; écriture', '', sub_description)
+    # sub_description = re.sub('<p>', '', field_description)
+    # sub_description = re.sub('&amp; écriture', '', sub_description)
     # split description
-    description = sub_description.split('</p>')
+    # description = sub_description.split('</p>')
+
+    # Delete HTML code in data method 2
+    clean = re.compile('<.*?>')
+    description = re.sub(clean, ' ', field_description)
+    description = re.sub('&amp;', '', description)
 
 
     return render_template('event.html', event=event, description=description)
