@@ -1,20 +1,10 @@
 from flask import Flask, render_template, json
 from flask_bootstrap import Bootstrap
 from flask_pymongo import pymongo
-import requests, db
-from animation import animation
-from concert import concert
-from exposition import exposition
-from spectacle import spectacle
-import re
+import requests, db, re
+
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
-
-app.register_blueprint(animation, url_prefix="")
-app.register_blueprint(concert, url_prefix="")
-app.register_blueprint(exposition, url_prefix="")
-app.register_blueprint(spectacle, url_prefix="")
-
 
 
 # Importer les données de l'api dans la base de données
@@ -54,6 +44,23 @@ def event(id):
     event = db.db.api.find_one({"recordid": id}, {"fields.title":1, "fields.category": 1, "fields.date_end": 1, "fields.cover_url":1, "recordid":1, "fields.description":1, "fields.date_start":1, "fields.date_end":1, "fields.price_detail":1})
 
     return render_template('event.html', event=event)
+
+
+@app.route("/category/<category>")
+def category(category):
+
+    data_category = db.db.api.find_one({"fields.category": { "$regex": re.compile(category, re.IGNORECASE)} }, {"fields.category": 1 })
+
+    field_category = data_category['fields']['category']
+
+    split_category = field_category.split(" -> ")
+
+    category = split_category[0]
+
+    data = db.db.api.find({"fields.category": { "$regex": re.compile(category, re.IGNORECASE)}}, {"fields.title":1, "fields.category": 1, "fields.date_end": 1, "fields.cover_url":1, "recordid":1 }).sort([("fields.date_end", -1)]).limit(8)
+    
+    return render_template('category.html', data=data, category=category)
+
 
 
 @app.route("/subcategory/<subcategory>")

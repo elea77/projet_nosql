@@ -38,10 +38,10 @@
     <div class="banner">
         {% if category == 'Animations' %}
             <img src="{{ url_for('static',filename='images/animation.png') }}" alt="">
-        {% elif category == 'Expostions' %}
-            <img src="{{ url_for('static',filename='images/exposition.png') }}" alt="">
         {% elif category == 'Concerts' %}
             <img src="{{ url_for('static',filename='images/concert.png') }}" alt="">
+        {% elif category == 'Expositions' %}
+            <img src="{{ url_for('static',filename='images/exposition.png') }}" alt="">
         {% elif category == 'Spectacles' %}
             <img src="{{ url_for('static',filename='images/spectacle.png') }}" alt="">
         {% endif %}
@@ -51,6 +51,7 @@
     <div class="category">
 
         <div class="subcategories row">
+
             {% if category == 'Animations' %}
                 <div class="item col">
                     <a href="/subcategory/conference">
@@ -184,12 +185,11 @@
                     </a>
                 </div>
             {% endif %}
-
         </div>
     </div>
 
     <div class="a-la-une">
-    <h1 class="text-center">{{subcategory}}</h1>
+    <h1 class="text-center">A la une</h1>
 
         <div class="container">
     
