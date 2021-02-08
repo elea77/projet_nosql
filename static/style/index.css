@@ -5,6 +5,7 @@
     background-size: cover;
     border-radius: 0px;
     padding-bottom: 80px;
+    margin-bottom: 0!important;
 }
   
 .display-4{
@@ -13,7 +14,16 @@
     color: white;
 }
 
-.category-items .item:nth-child(-n+4) {
+.bg-full {
+    background-color: rgb(45, 138, 167);
+    color: white;
+}
+
+.category-items .item {
+    margin-bottom: 2%;
+}
+
+.category-items .item:nth-child() {
     margin-bottom: 2%;
 }
 
@@ -29,7 +39,14 @@
 }
 
 .category-items .item-title {
+    background-color: rgb(45, 138, 167);
+    color: white;
+    border-radius: 0 0 5px 5px;
+}
+
+.bg-full .category-items .item-title {
     background-color: white;
+    color: white;
     color: black;
     border-radius: 0 0 5px 5px;
 }
