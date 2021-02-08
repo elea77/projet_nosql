@@ -5,8 +5,7 @@
 
     <header class="header__main">
     <div class="header__logo">
-        <!-- <img src="{{url_for('static', filename='images/logo.png')}}" alt="logo"> -->
-        <h1>Paris</h1>
+        <img src="{{url_for('static', filename='images/logo.png')}}" alt="logo">
     </div>
 
     <div class="nav-list-container">
@@ -26,6 +25,7 @@
 
 {% block styles %}
     {{super()}}
+    <link rel="icon" type="image/png" href="{{ url_for('static',filename='images/icon.png') }}" />
     <link href="{{ url_for('static',filename='style/categories.css') }}" rel="stylesheet">
     <link href="{{ url_for('static',filename='style/navbar.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Taviraj:wght@500&display=swap" rel="stylesheet">
