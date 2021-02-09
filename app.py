@@ -38,11 +38,11 @@ def api():
 @app.route('/')
 def index():
     
-    free_event = db.db.api.find({'fields.price_type': "gratuit"}, {"fields.title":1, "fields.address_street": 1, "fields.cover_url":1, "recordid":1 }).limit(8)
+    free_event = db.db.api.find({'fields.price_type': "gratuit"}, {"fields.title":1, "fields.address_street": 1, "fields.cover_url":1, "fields.id":1 }).limit(8)
 
-    pmr_event = db.db.api.find({'fields.pmr': 1}, {"fields.title":1, "fields.address_street": 1, "fields.cover_url":1, "recordid":1 }).limit(8)
+    pmr_event = db.db.api.find({'fields.pmr': 1}, {"fields.title":1, "fields.address_street": 1, "fields.cover_url":1, "fields.id":1 }).limit(8)
     
-    reservation_event = db.db.api.find({'fields.access_type': "reservation"}, {"fields.title":1, "fields.address_street": 1, "fields.cover_url":1, "recordid":1 }).limit(8)
+    reservation_event = db.db.api.find({'fields.access_type': "reservation"}, {"fields.title":1, "fields.address_street": 1, "fields.cover_url":1, "fields.id":1 }).limit(8)
 
     return render_template('index.html', free_event=free_event, pmr_event=pmr_event, reservation_event=reservation_event)
 
@@ -66,7 +66,7 @@ def category(category):
     category = split_category[0]
 
     # Get data for category "A la une"
-    data = db.db.api.find({"fields.category": { "$regex": re.compile(category, re.IGNORECASE)}}, {"fields.title":1, "fields.category": 1, "fields.date_end": 1, "fields.cover_url":1, "recordid":1 }).sort([("fields.date_end", -1)]).limit(8)
+    data = db.db.api.find({"fields.category": { "$regex": re.compile(category, re.IGNORECASE)}}, {"fields.title":1, "fields.category": 1, "fields.date_end": 1, "fields.cover_url":1, "fields.id":1 }).sort([("fields.date_end", -1)]).limit(8)
     
     return render_template('category.html', data=data, category=category)
 
@@ -87,7 +87,7 @@ def subcategory(subcategory):
     subcategory = split_category[1]
     
     # Get data for subcategory
-    data = db.db.api.find({"fields.category": { "$regex": re.compile(subcategory, re.IGNORECASE)}}, {"fields.title":1, "fields.category": 1, "fields.cover_url":1, "recordid":1 })
+    data = db.db.api.find({"fields.category": { "$regex": re.compile(subcategory, re.IGNORECASE)}}, {"fields.title":1, "fields.category": 1, "fields.cover_url":1, "fields.id":1 })
     
     return render_template('subcategory.html', data=data, category=category, subcategory=subcategory)
 
@@ -96,7 +96,7 @@ def subcategory(subcategory):
 @app.route("/event/<id>")
 def event(id):
 
-    event = db.db.api.find_one({"recordid": id}, {"fields.title":1, "fields.category": 1, "fields.date_description": 1, "fields.cover_url":1, "recordid":1, "fields.description":1, "fields.price_detail":1,"fields.lead_text":1, "fields.address_street": 1, "fields.price_type":1, "fields.transport":1, "fields.access_link":1, "fields.address_name":1, "fields.contact_mail":1})
+    event = db.db.api.find_one({"fields.id": id}, {"fields.title":1, "fields.category": 1, "fields.date_description": 1, "fields.cover_url":1, "fields.id":1, "fields.description":1, "fields.price_detail":1,"fields.lead_text":1, "fields.address_street": 1, "fields.price_type":1, "fields.transport":1, "fields.access_link":1, "fields.address_name":1, "fields.contact_mail":1})
     
     field_description = event['fields']['description']
     field_date_description = event['fields']['date_description']

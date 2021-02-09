@@ -196,7 +196,7 @@
             <div class="row category-items">
                 {% for event in data %}
                 <div class="col-3 item">   
-                    <a href="/event/{{event.recordid}}">
+                    <a href="/event/{{event.fields.id}}">
                         <div class="item-img">
                             <img src="{{event.fields.cover_url}}" alt="">
                         </div>
