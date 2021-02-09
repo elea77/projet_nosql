@@ -58,13 +58,13 @@ def index():
     random_reservation = random.randint(0, max_reservation)
 
     # Free event
-    free_event = db.db.api.find({'fields.price_type': "gratuit"}, {"fields.title":1, "fields.address_street": 1, "fields.cover_url":1, "fields.id":1 }).skip(random_free).limit(limit)
+    free_event = db.db.api.find({'fields.price_type': "gratuit"}, {"fields.title":1, "fields.cover_url":1, "fields.id":1 }).skip(random_free).limit(limit)
    
     # Event access pmr
-    pmr_event = db.db.api.find({'fields.pmr': 1}, {"fields.title":1, "fields.address_street": 1, "fields.cover_url":1, "fields.id":1 }).skip(random_pmr).limit(limit)
+    pmr_event = db.db.api.find({'fields.pmr': 1}, {"fields.title":1, "fields.cover_url":1, "fields.id":1 }).skip(random_pmr).limit(limit)
     
     # Event reservation
-    reservation_event = db.db.api.find({'fields.access_type': "reservation"}, {"fields.title":1, "fields.address_street": 1, "fields.cover_url":1, "fields.id":1 }).skip(random_reservation).limit(limit)
+    reservation_event = db.db.api.find({'fields.access_type': "reservation"}, {"fields.title":1, "fields.cover_url":1, "fields.id":1 }).skip(random_reservation).limit(limit)
 
     return render_template('index.html', free_event=free_event, pmr_event=pmr_event, reservation_event=reservation_event)
 
