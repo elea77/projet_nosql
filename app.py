@@ -7,29 +7,31 @@ app = Flask(__name__)
 bootstrap = Bootstrap(app)
 
 
+@app.route("/del-db")
+def del_db():
+    # Delete collection before insert
+    db.client.drop_database("nosql_db")
+    return "Base de données supprimée !"
+
+
 # Import data from api file in db
 with open('data-api.json') as file: 
     file_data = json.load(file) 
       
 @app.route("/api-doc")
 def api_doc():
-    # Delete collection before insert
-    db.client.drop_database("nosql_db")
     # Insert data in db
     db.db.api.insert_many(file_data)
     return "Eléments ajoutés en bdd !"
  
 @app.route("/api")
 def api():
-    # Delete collection before insert
-    db.client.drop_database("nosql_db")
-
     # Get api from url in json
     api = requests.get("https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&q=&rows=2000")
     json_obj = api.json()
     data_api = list(json_obj["records"])
 
-    # Insert data in db
+    # # Insert data in db
     db.db.api.insert_many(data_api)
 
     return "Eléments ajoutés en bdd !"
