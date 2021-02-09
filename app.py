@@ -1,7 +1,7 @@
 from flask import Flask, render_template, json
 from flask_bootstrap import Bootstrap
 from flask_pymongo import pymongo
-import requests, db, re
+import requests, db, re, random
 
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
@@ -37,12 +37,32 @@ def api():
 
 @app.route('/')
 def index():
-    
-    free_event = db.db.api.find({'fields.price_type': "gratuit"}, {"fields.title":1, "fields.address_street": 1, "fields.cover_url":1, "fields.id":1 }).limit(8)
 
-    pmr_event = db.db.api.find({'fields.pmr': 1}, {"fields.title":1, "fields.address_street": 1, "fields.cover_url":1, "fields.id":1 }).limit(8)
+    limit = 8
+
+    # count free event
+    count_free_event = db.db.api.find({'fields.price_type': "gratuit"}, {}).count()
+    count_pmr_event = db.db.api.find({'fields.pmr': 1}, {}).count()
+    count_reservation_event = db.db.api.find({'fields.access_type': "reservation"}, {}).count()
     
-    reservation_event = db.db.api.find({'fields.access_type': "reservation"}, {"fields.title":1, "fields.address_street": 1, "fields.cover_url":1, "fields.id":1 }).limit(8)
+    # define max 
+    max_free = count_free_event - limit
+    max_pmr = count_pmr_event - limit
+    max_reservation = count_reservation_event - limit
+    
+    # random numbers
+    random_free = random.randint(0, max_free)
+    random_pmr = random.randint(0, max_pmr)
+    random_reservation = random.randint(0, max_reservation)
+
+    # Free event
+    free_event = db.db.api.find({'fields.price_type': "gratuit"}, {"fields.title":1, "fields.address_street": 1, "fields.cover_url":1, "fields.id":1 }).skip(random_free).limit(limit)
+   
+    # Event access pmr
+    pmr_event = db.db.api.find({'fields.pmr': 1}, {"fields.title":1, "fields.address_street": 1, "fields.cover_url":1, "fields.id":1 }).skip(random_pmr).limit(limit)
+    
+    # Event reservation
+    reservation_event = db.db.api.find({'fields.access_type': "reservation"}, {"fields.title":1, "fields.address_street": 1, "fields.cover_url":1, "fields.id":1 }).skip(random_reservation).limit(limit)
 
     return render_template('index.html', free_event=free_event, pmr_event=pmr_event, reservation_event=reservation_event)
 
